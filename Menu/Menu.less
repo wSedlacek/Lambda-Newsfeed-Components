@@ -7,17 +7,20 @@
 }
 
 .menu {
-  display: none;
+  display: block;
   position: fixed;
   top: 75px;
   left: 0;
-  width: 350px;
-  height: 100vh; /* This give the height 100% of the screen or, '100% of View Height' */
+  width: 0;
+  height: 100vh;
   background-color: #81c784;
   border: 1px solid #004d40;
   border-left: none;
   border-bottom: none;
-  z-index: 2; /* This set the layer level of the element, it has precendence over initial level of 1*/
+  z-index: 2;
+
+  transition: all 0.5s ease-in-out;
+  overflow-x: hidden;
 }
 
 .menu ul li {
@@ -28,5 +31,5 @@
 }
 
 .menu--open {
-  display: block;
+  width: 350px;
 }
