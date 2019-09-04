@@ -90,9 +90,7 @@ const data = [
     title: 'Some Article',
     date: 'Jan 1st, 1970',
     firstParagraph: `????`,
-
     secondParagraph: `???`,
-
     thirdParagraph: `?????`,
   },
 ];
@@ -130,15 +128,21 @@ const createArticle = details => {
   const articlePart2 = document.createElement('p');
   const articlePart3 = document.createElement('p');
   const articleExpand = document.createElement('span');
+  const articleClose = document.createElement('button');
 
   article.className = 'article';
   articleDate.className = 'date';
   articleExpand.className = 'expandButton';
+  articleClose.className = 'close';
 
   articleExpand.addEventListener('click', () => {
     articleExpand.textContent =
       articleExpand.textContent === 'Click to Expand' ? 'Click to Close' : 'Click to Expand';
     article.classList.toggle('article-open');
+  });
+
+  articleClose.addEventListener('click', () => {
+    articles.removeChild(article);
   });
 
   article.append(articleTitle);
@@ -147,6 +151,7 @@ const createArticle = details => {
   article.append(articlePart2);
   article.append(articlePart3);
   article.append(articleExpand);
+  article.append(articleClose);
 
   articleTitle.textContent = details.title;
   articleDate.textContent = details.date;
@@ -154,6 +159,7 @@ const createArticle = details => {
   articlePart2.textContent = details.secondParagraph;
   articlePart3.textContent = details.thirdParagraph;
   articleExpand.textContent = 'Click to Expand';
+  articleClose.textContent = 'x';
 
   return article;
 };
@@ -165,3 +171,28 @@ data.map(data => {
   articles.append(article);
   return article;
 });
+
+const addArticle = () => {
+  const title = prompt('Title:', '');
+  const date = prompt('Date:', '');
+  const firstParagraph = prompt('First Paragraph:', '');
+  const secondParagraph = prompt('Second Paragraph:', '');
+  const thirdParagraph = prompt('Third Paragraph:', '');
+  const article = createArticle({
+    title,
+    date,
+    firstParagraph,
+    secondParagraph,
+    thirdParagraph,
+  });
+  articles.append(article);
+  return article;
+};
+
+const addButton = document.createElement('button');
+addButton.className = 'add-btn';
+addButton.addEventListener('click', addArticle);
+addButton.textContent = 'Add';
+
+const page = document.querySelector('body');
+page.append(addButton);
