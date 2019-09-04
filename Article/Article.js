@@ -86,6 +86,15 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
   },
+  {
+    title: 'Some Article',
+    date: 'Jan 1st, 1970',
+    firstParagraph: `????`,
+
+    secondParagraph: `???`,
+
+    thirdParagraph: `?????`,
+  },
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below:
@@ -112,3 +121,43 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createArticle = details => {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articlePart1 = document.createElement('p');
+  const articlePart2 = document.createElement('p');
+  const articlePart3 = document.createElement('p');
+  const articleExpand = document.createElement('span');
+
+  article.className = 'article';
+  articleDate.className = 'date';
+  articleExpand.className = 'expandButton';
+
+  articleExpand.addEventListener('click', () => article.classList.toggle('article-open'));
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(articlePart1);
+  article.append(articlePart2);
+  article.append(articlePart3);
+  article.append(articleExpand);
+
+  articleTitle.textContent = details.title;
+  articleDate.textContent = details.date;
+  articlePart1.textContent = details.firstParagraph;
+  articlePart2.textContent = details.secondParagraph;
+  articlePart3.textContent = details.thirdParagraph;
+  articleExpand.textContent = '----';
+
+  return article;
+};
+
+const articles = document.querySelector('.articles');
+
+data.map(data => {
+  const article = createArticle(data);
+  articles.append(article);
+  return article;
+});
