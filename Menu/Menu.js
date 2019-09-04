@@ -52,3 +52,6 @@ body.append(menu);
 
 const menuButton = document.querySelector('.menu-button');
 menuButton.addEventListener('click', () => menu.classList.toggle('menu--open'));
+
+const content = document.querySelector('.articles');
+content.addEventListener('click', () => menu.classList.remove('menu--open'));

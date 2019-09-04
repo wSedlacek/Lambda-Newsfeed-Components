@@ -135,7 +135,11 @@ const createArticle = details => {
   articleDate.className = 'date';
   articleExpand.className = 'expandButton';
 
-  articleExpand.addEventListener('click', () => article.classList.toggle('article-open'));
+  articleExpand.addEventListener('click', () => {
+    articleExpand.textContent =
+      articleExpand.textContent === 'Click to Expand' ? 'Click to Close' : 'Click to Expand';
+    article.classList.toggle('article-open');
+  });
 
   article.append(articleTitle);
   article.append(articleDate);
@@ -149,7 +153,7 @@ const createArticle = details => {
   articlePart1.textContent = details.firstParagraph;
   articlePart2.textContent = details.secondParagraph;
   articlePart3.textContent = details.thirdParagraph;
-  articleExpand.textContent = '----';
+  articleExpand.textContent = 'Click to Expand';
 
   return article;
 };
